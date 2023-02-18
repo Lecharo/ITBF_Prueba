@@ -1,0 +1,49 @@
+<form>
+  <div class="mb-3">
+      <label for="employeeId" class="form-label">Employees</label>
+      <input type="text" class="form-control" name="employeeId" [(ngModel)]="employeeId" *ngIf="dailyActivity.id!=0" disabled>
+      <select class="form-control" name="employeeId" id="employeeId" [(ngModel)]="employeeId" *ngIf="dailyActivity.id==0">
+          <option *ngFor="let type of employeesList$|async" [value]="type.id">{{type.employeeName}}</option>
+      </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="activityId" class="form-label">Activities</label>
+    <input type="text" class="form-control" name="activityId" [(ngModel)]="activityId" *ngIf="dailyActivity.id!=0" disabled>
+    <select class="form-control" name="activityId" id="activityId" [(ngModel)]="activityId" *ngIf="dailyActivity.id==0">
+        <option *ngFor="let type of activitiesList$|async" [value]="type.id">{{type.activityName}}</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="laborId" class="form-label">Labors</label>
+    <input type="text" class="form-control" name="laborId" [(ngModel)]="laborId"
+    *ngIf="dailyActivity.id!=0" disabled>
+    <select class="form-control" name="laborId" id="laborId" [(ngModel)]="laborId" *ngIf="dailyActivity.id==0">
+        <option *ngFor="let type of laborsList$|async" [value]="type.id">{{type.laborName}}</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="comments" class="form-label">Fecha</label>
+    <input type="date" class="form-control" [(ngModel)]="workDay" name="workDay">
+  </div>
+
+  <div class="mb-3">
+    <label for="comments" class="form-label">Duration in hours </label>
+    <input type="number" class="form-control" [(ngModel)]="durationLabor" name="durationLabor">
+  </div>
+
+  <div class="mb-3">
+      <label for="comments" class="form-label">Comments</label>
+      <input type="text" class="form-control" [(ngModel)]="comments" name="comments">
+  </div>
+
+  <button (click)="addDailyActivity()" *ngIf="dailyActivity.id==0" class="btn btn-primary">
+      Add
+  </button>
+  <button (click)="updateDailyActivity()" *ngIf="dailyActivity.id!=0" class="btn btn-primary">
+      Update
+  </button>
+</form>
+
